@@ -9,11 +9,24 @@ export type ExampleModel = {
 
 const EXAMPLES: ExampleModel[] = [
     {
-        text: "What is included in my Northwind Health Plus plan that is not in standard?",
-        value: "What is included in my Northwind Health Plus plan that is not in standard?"
+        text: "Mikä on Lewyn-kappaleen tauti?",
+        value: "Mikä on Lewyn-kappaleen tauti?"
     },
-    { text: "What happens in a performance review?", value: "What happens in a performance review?" },
-    { text: "What does a Product Manager do?", value: "What does a Product Manager do?" }
+    { text: "Kerro minulle anemiasta lapsilla",
+      value: "Kerro minulle anemiasta lapsilla" 
+    },
+    { text: "Mikä on meningiitti?",
+      value: "Mikä on meningiitti?" 
+    },
+    { text: "Mitä  ovat KLL ja KML?",
+      value: "Mitä  ovat KLL ja KML?" 
+    },
+    { text: "Berätta för mig om anafylaktisk reaktion",
+      value: "Berätta för mig om anafylaktisk reaktion" 
+    },
+    { text: "Mistä tunnnistaa vaskulaarisen kognitiivisen heikentymän?",
+      value: "Mistä tunnnistaa vaskulaarisen kognitiivisen heikentymän?" 
+    },
 ];
 
 interface Props {
