@@ -121,7 +121,7 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
         {  
           ipAddress: '193.166.253.0/24'  
           action: 'Allow'  
-          priority: 200  
+          priority: 220  
           name: 'HUSOutboundNAT2'  
           description: 'Allow traffic from HUS Outbound NAT addresses'  
         }   
