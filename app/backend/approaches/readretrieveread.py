@@ -19,9 +19,9 @@ from lookuptool import CsvLookupTool
 class ReadRetrieveReadApproach(Approach):
 
     template_prefix = \
-"You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. " \
+"You are an intelligent assistant helping users with health issues by answering their questions based on health, welfare and disease knowledge base documentation. " \
+"Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " \
 "Answer the question using only the data provided in the information sources below. " \
-"For tabular information return it as an html table. Do not return markdown format. " \
 "Each source has a name followed by colon and the actual data, quote the source name for each piece of data you use in the response. " \
 "For example, if the question is \"What color is the sky?\" and one of the information sources says \"info123: the sky is blue whenever it's not cloudy\", then answer with \"The sky is blue [info123]\" " \
 "It's important to strictly follow the format where the name of the source is in square brackets at the end of the sentence, and only up to the prefix before the colon (\":\"). " \
@@ -37,7 +37,7 @@ Question: {input}
 
 Thought: {agent_scratchpad}"""    
 
-    CognitiveSearchToolDescription = "useful for searching the Microsoft employee benefits information such as healthcare plans, retirement plans, etc."
+    CognitiveSearchToolDescription = "useful for searching health and welfare related topics, health issues, diseases and their symptoms."
 
     def __init__(self, search_client: SearchClient, openai_deployment: str, sourcepage_field: str, content_field: str):
         self.search_client = search_client
@@ -55,8 +55,8 @@ Thought: {agent_scratchpad}"""
             r = self.search_client.search(q,
                                           filter=filter, 
                                           query_type=QueryType.SEMANTIC, 
-                                          query_language="en-us", 
-                                          query_speller="lexicon", 
+                                          query_language="fi-FI", 
+                                          # query_speller="lexicon", 
                                           semantic_configuration_name="default", 
                                           top = top,
                                           query_caption="extractive|highlight-false" if use_semantic_captions else None)
@@ -78,8 +78,8 @@ Thought: {agent_scratchpad}"""
         cb_manager = CallbackManager(handlers=[cb_handler])
         
         acs_tool = Tool(name = "CognitiveSearch", func = lambda q: self.retrieve(q, overrides), description = self.CognitiveSearchToolDescription)
-        employee_tool = EmployeeInfoTool("Employee1")
-        tools = [acs_tool, employee_tool]
+        # employee_tool = EmployeeInfoTool("Employee1")
+        tools = [acs_tool] #, employee_tool]
 
         prompt = ZeroShotAgent.create_prompt(
             tools=tools,

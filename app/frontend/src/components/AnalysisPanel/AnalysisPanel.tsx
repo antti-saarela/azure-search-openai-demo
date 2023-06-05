@@ -33,24 +33,24 @@ export const AnalysisPanel = ({ answer, activeTab, activeCitation, citationHeigh
         >
             <PivotItem
                 itemKey={AnalysisPanelTabs.ThoughtProcessTab}
-                headerText="Thought process"
+                headerText="Ajatuksen juoksu"
                 headerButtonProps={isDisabledThoughtProcessTab ? pivotItemDisabledStyle : undefined}
             >
                 <div className={styles.thoughtProcess} dangerouslySetInnerHTML={{ __html: sanitizedThoughts }}></div>
             </PivotItem>
             <PivotItem
                 itemKey={AnalysisPanelTabs.SupportingContentTab}
-                headerText="Supporting content"
+                headerText="Tukimateriaaleja"
                 headerButtonProps={isDisabledSupportingContentTab ? pivotItemDisabledStyle : undefined}
             >
                 <SupportingContent supportingContent={answer.data_points} />
             </PivotItem>
             <PivotItem
                 itemKey={AnalysisPanelTabs.CitationTab}
-                headerText="Citation"
+                headerText="Lähdeviite"
                 headerButtonProps={isDisabledCitationTab ? pivotItemDisabledStyle : undefined}
             >
-                <iframe title="Citation" src={activeCitation} width="100%" height={citationHeight} />
+                <iframe title="Lähdeviite" src={activeCitation} width="100%" height={citationHeight} />
             </PivotItem>
         </Pivot>
     );
