@@ -18,9 +18,9 @@ The repo includes sample data so it's ready to try end to end. In this sample ap
 
 > **AZURE RESOURCE COSTS** by default this sample will create Azure App Service and Azure Cognitive Search resources that have a monthly cost, as well as Form Recognizer resource that has cost per document page. You can switch them to free versions of each of them if you want to avoid this cost by changing the parameters file under the infra folder (though there are some limits to consider; for example, you can have up to 1 free Cognitive Search resource per subscription, and the free Form Recognizer resource only analyzes the first 2 pages of each document.)
 
-### Prerequisites
+## Prerequisites
 
-#### To Run Locally
+### To Run Locally
 - [Azure Developer CLI](https://aka.ms/azure-dev/install)
 - [Python 3+](https://www.python.org/downloads/)
     - **Important**: Python and the pip package manager must be in the path in Windows for the setup scripts to work.
@@ -33,16 +33,16 @@ The repo includes sample data so it's ready to try end to end. In this sample ap
 >NOTE: Your Azure Account must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [User Access Administrator](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#owner).  
 
 
-### Installation
+## Installation
 
-#### Project Initialization
+### Project Initialization
 
 1. Create a new folder and switch to it in the terminal
 1. Run `azd auth login --tenant-id 81b59a4e-f4e0-4903-be71-0ee63ff2b992`
 1. Run `azd init -t azure-search-openai-demo`
     * For the target location, the regions that currently support the models used in this sample are **East US** or **West Europe**. For an up-to-date list of regions and models, check [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
 
-#### Starting from scratch:
+### Starting from scratch:
 
 Execute the following command, if you don't have any pre-existing Azure services and want to start from a fresh deployment.
 
@@ -55,7 +55,7 @@ It will look like the following:
     
 > NOTE: It may take a minute for the application to be fully deployed. If you see a "Python Developer" welcome screen, then wait a minute and refresh the page.
 
-#### Use existing resources:
+### Use existing resources:
 
 1. Run `azd env set AZURE_OPENAI_SERVICE {Name of existing OpenAI service}`
 1. Run `azd env set AZURE_OPENAI_RESOURCE_GROUP {Name of existing resource group that OpenAI service is provisioned to}`
@@ -67,7 +67,7 @@ It will look like the following:
 azd auth login --tenant-id 7de4405f-a24c-490d-af4a-f2ec4a6835c9
 ```
 
-## HUS Kehitys infra
+### HUS Kehitys infra minimum configuration
 
 ```
 
@@ -96,7 +96,19 @@ azd env get-values
 azd up
 ```
 
-And later to update just the application without re-indexing documents run:
+Alternatively you can run first 
+
+```
+azd provision
+```
+and then to deploy the application run
+```
+azd deploy
+```
+
+## Updating the solution
+
+Later to update just the application without re-indexing documents run:
 
 ```
 azd deploy
@@ -118,7 +130,7 @@ azd provision
 #### Deploying or re-deploying a local clone of the repo:
 * Simply run `azd up`
 
-#### Running locally:
+### Running locally:
 1. Run `azd login`
 2. Change dir to `app`
 3. Run `./start.ps1` or `./start.sh` or run the "VS Code Task: Start App" to start the project locally.
@@ -133,7 +145,7 @@ cd app
 
 ```
 
-#### Sharing Environments
+### Sharing Environments
 
 Run the following if you want to give someone else access to completely deployed and existing environment.
 
@@ -142,7 +154,7 @@ Run the following if you want to give someone else access to completely deployed
 1. Run `azd env refresh -e {environment name}` - Note that they will need the azd environment name, subscription Id, and location to run this command - you can find those values in your `./azure/{env name}/.env` file.  This will populate their azd environment's .env file with all the settings needed to run the app locally.
 1. Run `pwsh ./scripts/roles.ps1` - This will assign all of the necessary roles to the user so they can run the app locally.  If they do not have the necessary permission to create roles in the subscription, then you may need to run this script for them. Just be sure to set the `AZURE_PRINCIPAL_ID` environment variable in the azd .env file or in the active shell to their Azure Id, which they can get with `az account show`.
 
-### Quickstart
+## Quickstart
 
 * In Azure: navigate to the Azure WebApp deployed by azd. The URL is printed out when azd completes (as "Endpoint"), or you can find it in the Azure portal.
 * Running locally: navigate to 127.0.0.1:5000
