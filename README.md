@@ -102,10 +102,16 @@ And later to update just the application without re-indexing documents run:
 azd deploy
 ```
 
+The command *azd deploy* will not provision Azure resources or do any changes to them.
 
-https://app-backend-xvcilf7auy6ek.azurewebsites.net/
+To change the Azure *infrastructure* or to provision the resources to another resource group etc. run:
 
-`SUCCESS: Your application was provisioned and deployed to Azure in 1 hour 40 minutes 29 seconds.`
+```
+azd provision
+```
+
+> **Note:** The command *azd provision* will provision Azure resources based on the active azd env configuration **and** upload and **index all the documents** in the *data* sub-folder. This may take several hours depending on the amount of document (pages) and will incur some additional Azure costs.
+
 
 > NOTE: You can also use existing Search and Storage Accounts.  See `./infra/main.parameters.json` for list of environment variables to pass to `azd env set` to configure those existing resources.
 
