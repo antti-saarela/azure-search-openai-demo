@@ -73,6 +73,7 @@ azd auth login --tenant-id 7de4405f-a24c-490d-af4a-f2ec4a6835c9
 
 azd env set AZURE_TENANT_ID 7de4405f-a24c-490d-af4a-f2ec4a6835c9
 azd env set AZURE_SUBSCRIPTION_ID 40526986-8452-4261-9870-ce1d39d847d0
+azd env set AZURE_RESOURCE_GROUP husdl-dev-openai-search-poc
 azd env set AZURE_LOCATION westeurope
 azd env set AZURE_OPENAI_SERVICE husdl-dev-openai-husdltkbot
 
