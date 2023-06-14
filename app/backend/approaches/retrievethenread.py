@@ -63,7 +63,7 @@ Answer:
             r = self.search_client.search(q, 
                                           filter=filter,
                                           query_type=QueryType.SEMANTIC, 
-                                          query_language="fi-FI", 
+                                          query_language="sv-SE", 
                                           # query_speller="lexicon", 
                                           semantic_configuration_name="default", 
                                           top=top, 

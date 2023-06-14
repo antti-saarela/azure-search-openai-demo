@@ -21,7 +21,7 @@ const Layout = () => {
                             </li>
                             <li className={styles.headerNavLeftMargin}>
                                 <NavLink to="/qa" className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}>
-                                    Kysy
+                                    Fräga
                                 </NavLink>
                             </li>
                             <li className={styles.headerNavLeftMargin}>

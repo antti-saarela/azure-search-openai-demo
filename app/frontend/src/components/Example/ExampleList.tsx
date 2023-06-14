@@ -9,23 +9,20 @@ export type ExampleModel = {
 
 const EXAMPLES: ExampleModel[] = [
     {
-        text: "Mikä on Lewyn-kappaleen tauti?",
-        value: "Mikä on Lewyn-kappaleen tauti?"
+        text: "Vad är det primära syftet med de Nationella riktlinjer som fastställts av Socialstyrelsen?",
+        value: "Vad är det primära syftet med de Nationella riktlinjer som fastställts av Socialstyrelsen?"
     },
-    { text: "Kerro minulle anemiasta lapsilla",
-      value: "Kerro minulle anemiasta lapsilla" 
+    { text: "Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?",
+      value: "Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?" 
     },
-    { text: "Mikä on meningiitti?",
-      value: "Mikä on meningiitti?" 
+    { text: "Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?",
+      value: "Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?" 
     },
-    { text: "Mitä  ovat KLL ja KML?",
-      value: "Mitä  ovat KLL ja KML?" 
+    { text: "Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?",
+      value: "Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?" 
     },
-    { text: "Berätta för mig om anafylaktisk reaktion",
-      value: "Berätta för mig om anafylaktisk reaktion" 
-    },
-    { text: "Mistä tunnnistaa vaskulaarisen kognitiivisen heikentymän?",
-      value: "Mistä tunnnistaa vaskulaarisen kognitiivisen heikentymän?" 
+    { text: "Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?",
+      value: "Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?" 
     },
 ];
 

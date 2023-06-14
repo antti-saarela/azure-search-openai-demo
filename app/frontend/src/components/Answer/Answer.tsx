@@ -40,16 +40,16 @@ export const Answer = ({
                         <IconButton
                             style={{ color: "black" }}
                             iconProps={{ iconName: "Lightbulb" }}
-                            title="Ajatuksen juoksu"
-                            ariaLabel="Ajatuksen juoksu"
+                            title="Tankegång"
+                            ariaLabel="Tankegång"
                             onClick={() => onThoughtProcessClicked()}
                             disabled={!answer.thoughts}
                         />
                         <IconButton
                             style={{ color: "black" }}
                             iconProps={{ iconName: "ClipboardList" }}
-                            title="Tukimateriaalit"
-                            ariaLabel="Tukimateriaalit"
+                            title="Stödmaterial"
+                            ariaLabel="Stödmaterial"
                             onClick={() => onSupportingContentClicked()}
                             disabled={!answer.data_points.length}
                         />

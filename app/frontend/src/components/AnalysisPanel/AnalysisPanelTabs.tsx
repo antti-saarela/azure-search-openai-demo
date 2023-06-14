@@ -1,5 +1,5 @@
 export enum AnalysisPanelTabs {
-    ThoughtProcessTab = "Ajatusprosessi",
-    SupportingContentTab = "Tukimateriaaleja",
-    CitationTab = "Lähdeviite"
+    ThoughtProcessTab = "Tankegång",
+    SupportingContentTab = "Stödmaterial",
+    CitationTab = "Källhänvisning"
 }

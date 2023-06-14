@@ -67,18 +67,6 @@ It will look like the following:
 azd auth login --tenant-id 7de4405f-a24c-490d-af4a-f2ec4a6835c9
 ```
 
-### HUS Kehitys infra minimum configuration
-
-```
-
-azd env set AZURE_TENANT_ID 7de4405f-a24c-490d-af4a-f2ec4a6835c9
-azd env set AZURE_SUBSCRIPTION_ID 40526986-8452-4261-9870-ce1d39d847d0
-azd env set AZURE_RESOURCE_GROUP husdl-dev-openai-search-poc
-azd env set AZURE_LOCATION westeurope
-azd env set AZURE_OPENAI_SERVICE husdl-dev-openai-husdltkbot
-
-```
-
 ### Optional settings
 
 ```
@@ -170,3 +158,12 @@ Once in the web app:
 * [Revolutionize your Enterprise Data with ChatGPT: Next-gen Apps w/ Azure OpenAI and Cognitive Search](https://aka.ms/entgptsearchblog)
 * [Azure Cognitive Search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
 * [Azure OpenAI Service](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
+
+
+## Example questions
+
+Vad är det primära syftet med de Nationella riktlinjer som fastställts av Socialstyrelsen?
+Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?
+Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?
+Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?
+Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?
