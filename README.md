@@ -64,7 +64,7 @@ It will look like the following:
 1. Run `azd up`
 
 ```
-azd auth login --tenant-id 7de4405f-a24c-490d-af4a-f2ec4a6835c9
+azd auth login --tenant-id 81b59a4e-f4e0-4903-be71-0ee63ff2b992
 ```
 
 ### Optional settings
