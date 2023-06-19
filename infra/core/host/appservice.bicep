@@ -105,27 +105,6 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
           description: 'Allow traffic from Tietoevry VPN addresses'  
         }
         {  
-          ipAddress: '193.66.181.64/28'  
-          action: 'Allow'  
-          priority: 200  
-          name: 'HUSExpressRoute'  
-          description: 'Allow traffic from HUS ExpressRoute addresses'  
-        }
-        {  
-          ipAddress: '193.166.190.0/24'  
-          action: 'Allow'  
-          priority: 210  
-          name: 'HUSOutboundNAT1'  
-          description: 'Allow traffic from HUS Outbound NAT addresses'  
-        }
-        {  
-          ipAddress: '193.166.253.0/24'  
-          action: 'Allow'  
-          priority: 220  
-          name: 'HUSOutboundNAT2'  
-          description: 'Allow traffic from HUS Outbound NAT addresses'  
-        }   
-        {  
           ipAddress: '0.0.0.0/0'  
           action: 'Deny'  
           priority: 2147483647  
