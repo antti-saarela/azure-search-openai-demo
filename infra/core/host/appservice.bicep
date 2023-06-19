@@ -90,53 +90,79 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
     name: 'web'  
     properties: {  
       ipSecurityRestrictions: [  
-        {  
-          ipAddress: '131.207.242.5/32'  
-          action: 'Allow'  
-          priority: 100  
-          name: 'TietoevryPublicIP'  
-          description: 'Allow traffic from Tietoevry public IP office addresses'  
-        }  
-        {  
-          ipAddress: '131.207.242.128/32'  
-          action: 'Allow'  
-          priority: 110  
-          name: 'TietoevryVPN'  
-          description: 'Allow traffic from Tietoevry VPN addresses'  
+        {
+          ipAddress: '131.207.242.5/32'
+          action: 'Allow'
+          tag: 'Default'
+          priority: 100
+          name: 'TietoevryPublicIP'
+          description: 'Allow traffic from Tietoevry public IP office addresses'
         }
-        {  
-          ipAddress: '193.66.181.64/28'  
-          action: 'Allow'  
-          priority: 200  
-          name: 'HUSExpressRoute'  
-          description: 'Allow traffic from HUS ExpressRoute addresses'  
+        {
+            ipAddress: '131.207.242.128/32'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 110
+            name: 'TietoevryVPN'
+            description: 'Allow traffic from Tietoevry VPN addresses'
         }
-        {  
-          ipAddress: '193.166.190.0/24'  
-          action: 'Allow'  
-          priority: 210  
-          name: 'HUSOutboundNAT1'  
-          description: 'Allow traffic from HUS Outbound NAT addresses'  
+        {
+            ipAddress: '193.15.240.56/28'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 200
+            name: 'TietoevrySweden'
+            description: 'Tietoevry Sweden offices'
         }
-        {  
-          ipAddress: '193.166.253.0/24'  
-          action: 'Allow'  
-          priority: 220  
-          name: 'HUSOutboundNAT2'  
-          description: 'Allow traffic from HUS Outbound NAT addresses'  
-        }   
-        {  
-          ipAddress: '0.0.0.0/0'  
-          action: 'Deny'  
-          priority: 2147483647  
-          name: 'DenyAll'  
-          description: 'Deny all other traffic'  
+        {
+            ipAddress: '86.62.169.149/32'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 210
+            name: 'TietoevryFornebu'
+            description: 'Tietoevry Fornebu office'
+        }
+        {
+            ipAddress: '194.71.87.232/32'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 220
+            name: 'TietoevryOslo'
+            description: 'Tietoevry Oslo office'
+        }
+        {
+            ipAddress: '194.71.87.1/32'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 230
+            name: 'TietoevrySwedenAddOn'
+            description: 'Tietoevry Sweden Additional IP address'
+        }
+        {
+            ipAddress: '0.0.0.0/0'
+            action: 'Deny'
+            tag: 'Default'
+            priority: 2147483647
+            name: 'DenyAll'
+            description: 'Deny all other traffic'
+        }
+        {
+            ipAddress: '193.15.240.60/32'
+            action: 'Allow'
+            tag: 'Default'
+            priority: 240
+            name: 'Tietoevry-VPN-SWE'
+            description: 'Tietoevry GlobalProtect VPN SWE'
+        }
+        {
+            ipAddress: 'Any'
+            action: 'Deny'
+            priority: 2147483647
+            name: 'Deny all'
+            description: 'Deny all access'
         }  
       ]  
-    }  
-    dependsOn: [  
-      appService  
-    ]  
+    }   
   }  
 }  
   

@@ -133,17 +133,17 @@ const OneShot = () => {
         <div className={styles.oneshotContainer}>
             <div className={styles.oneshotTopSection}>
                 <SettingsButton className={styles.settingsButton} onClick={() => setIsConfigPanelOpen(!isConfigPanelOpen)} />
-                <h1 className={styles.oneshotTitle}>Kysele datastasi</h1>
+                <h1 className={styles.oneshotTitle}>Fråga om ditt data</h1>
                 <div className={styles.oneshotQuestionInput}>
                     <QuestionInput
-                        placeholder="Esimerkiksi: Millainen on ALS-tauti?"
+                        placeholder="Till exempel: Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?"
                         disabled={isLoading}
                         onSend={question => makeApiRequest(question)}
                     />
                 </div>
             </div>
             <div className={styles.oneshotBottomSection}>
-                {isLoading && <Spinner label="Ootappa rauhassa, niin mietin mitä tuohon sanoisi..." />}
+                {isLoading && <Spinner label="Var stilla så funderar jag på vad jag ska säga om det..." />}
                 {!lastQuestionRef.current && <ExampleList onExampleClicked={onExampleClicked} />}
                 {!isLoading && answer && !error && (
                     <div className={styles.oneshotAnswerContainer}>

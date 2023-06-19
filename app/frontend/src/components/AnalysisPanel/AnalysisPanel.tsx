@@ -47,10 +47,10 @@ export const AnalysisPanel = ({ answer, activeTab, activeCitation, citationHeigh
             </PivotItem>
             <PivotItem
                 itemKey={AnalysisPanelTabs.CitationTab}
-                headerText="Lähdeviite"
+                headerText="Källhänvisning"
                 headerButtonProps={isDisabledCitationTab ? pivotItemDisabledStyle : undefined}
             >
-                <iframe title="Lähdeviite" src={activeCitation} width="100%" height={citationHeight} />
+                <iframe title="Källhänvisning" src={activeCitation} width="100%" height={citationHeight} />
             </PivotItem>
         </Pivot>
     );

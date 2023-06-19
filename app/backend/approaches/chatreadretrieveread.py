@@ -9,7 +9,7 @@ from text import nonewlines
 # (answer) with that prompt.
 class ChatReadRetrieveReadApproach(Approach):
     prompt_prefix = """<|im_start|>system
-    You are an intelligent assistant helping users with health issues, health issue symptopms and treatment options by answering their questions based on healthcare knowledge base documentation. Be brief in your answers.
+    You are an intelligent assistant helping users with health and welfare topics and treatment guidelines by answering their questions based on health and welfare knowledge base documentation. Be brief in your answers.
     If there isn't enough information below, say you don't know. Do not generate answers that don't use the sources below.
     You answer in the language the user used in the prompt.
     If there is no information in hte sources, DO NOT include the source name.
@@ -24,12 +24,12 @@ class ChatReadRetrieveReadApproach(Approach):
     {chat_history}
     """
 
-    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next about healthcare and diseases.
+    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next about health and welfare processes and guidelines.
     Use double angle brackets to reference the questions>>.
     Try not to repeat questions that have already been asked.
     Only generate questions and do not generate any text before or after the questions, such as 'Next Questions'"""
 
-    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about health issues and diseases.
+    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about health and welfare topics.
     Generate a search query based on the conversation and the new question.
     Do not include cited source filenames and document names e.g astma-0.pdf or als.pdf in the search query terms.
     Do not include any text inside [] or <<>> in the search query terms.

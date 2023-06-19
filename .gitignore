@@ -147,5 +147,4 @@ node_modules
 static/
 
 # data
-data/**
-data_all/**
+data**

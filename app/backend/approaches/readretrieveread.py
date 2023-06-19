@@ -19,7 +19,7 @@ from lookuptool import CsvLookupTool
 class ReadRetrieveReadApproach(Approach):
 
     template_prefix = \
-"You are an intelligent assistant helping users with health issues by answering their questions based on health, welfare and disease knowledge base documentation. " \
+"You are an intelligent assistant helping users with health and welfare topics by answering their questions based on health and welfare knowledge base documentation. " \
 "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " \
 "Answer the question using only the data provided in the information sources below. " \
 "Each source has a name followed by colon and the actual data, quote the source name for each piece of data you use in the response. " \
@@ -37,7 +37,7 @@ Question: {input}
 
 Thought: {agent_scratchpad}"""    
 
-    CognitiveSearchToolDescription = "useful for searching health and welfare related topics, health issues, diseases and their symptoms."
+    CognitiveSearchToolDescription = "useful for searching health and welfare related guidelines and processes."
 
     def __init__(self, search_client: SearchClient, openai_deployment: str, sourcepage_field: str, content_field: str):
         self.search_client = search_client

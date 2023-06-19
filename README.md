@@ -167,3 +167,16 @@ Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patient
 Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?
 Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?
 Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?
+
+
+# TODO
+
+## Interrupted upload and indexing
+
+16.6.2023 
+    2023-4-8460-kunskapsunderlag-512.pdf
+```
+
+
+
+
