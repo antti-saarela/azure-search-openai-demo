@@ -112,10 +112,7 @@ resource appService 'Microsoft.Web/sites@2022-03-01' = {
           description: 'Deny all other traffic'  
         }  
       ]  
-    }  
-    dependsOn: [  
-      appService  
-    ]  
+    }   
   }  
 }  
   
