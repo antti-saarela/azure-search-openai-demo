@@ -16,7 +16,7 @@ const Layout = () => {
                         <ul className={styles.headerNavList}>
                             <li>
                                 <NavLink to="/" className={({ isActive }) => (isActive ? styles.headerNavPageLinkActive : styles.headerNavPageLink)}>
-                                    Prata
+                                    Interagera
                                 </NavLink>
                             </li>
                             <li className={styles.headerNavLeftMargin}>

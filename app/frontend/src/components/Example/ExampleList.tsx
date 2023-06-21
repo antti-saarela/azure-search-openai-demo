@@ -9,20 +9,17 @@ export type ExampleModel = {
 
 const EXAMPLES: ExampleModel[] = [
     {
-        text: "Vad är det primära syftet med de Nationella riktlinjer som fastställts av Socialstyrelsen?",
-        value: "Vad är det primära syftet med de Nationella riktlinjer som fastställts av Socialstyrelsen?"
+        text: "Vad är syftet med de nationella riktlinjerna som fastställts av Socialstyrelsen?",
+        value: "Vad är syftet med de nationella riktlinjerna som fastställts av Socialstyrelsen?"
     },
-    { text: "Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?",
-      value: "Hur bidrar Nationella riktlinjer till förbättring av vårdkvalitet och patientsäkerhet i Sverige?" 
+    { text: "Hur bidrar de nationella riktlinjerna till förbättring av vårdkvalitet och patientsäkerhet i Sverige?",
+      value: "Hur bidrar de nationella riktlinjerna till förbättring av vårdkvalitet och patientsäkerhet i Sverige?" 
     },
-    { text: "Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?",
-      value: "Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som omfattas av Nationella riktlinjer?" 
+    { text: "Kan du ge exempel på ett specifikt område inom hälso- och sjukvård som omfattas av de nationella riktlinjerna?",
+      value: "Kan du ge exempel på ett specifikt område inom hälso- och sjukvård som omfattas av de nationella riktlinjerna?" 
     },
-    { text: "Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?",
-      value: "Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?" 
-    },
-    { text: "Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?",
-      value: "Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?" 
+    { text: "Hur utvecklas och uppdateras de nationella riktlinjerna för att säkerställa att de förblir relevanta och effektiva?​",
+      value: "Hur utvecklas och uppdateras de nationella riktlinjerna för att säkerställa att de förblir relevanta och effektiva?​" 
     },
 ];
 
