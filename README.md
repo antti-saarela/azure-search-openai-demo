@@ -168,14 +168,15 @@ Kan du ge ett exempel på ett specifikt område inom hälso- och sjukvård som o
 Hur utvecklas och uppdateras Nationella riktlinjer för att säkerställa att de förblir relevanta och effektiva?
 Vilken roll spelar vårdprofessionella och organisationer i genomförandet av Nationella riktlinjer?
 
+--
+
+Should I register an astma patient to some health registers?
+What benefits does it bring if patients are registered?
+What health issue is KOL and how it is related to asthma?
+How to get reports out of Luftvägsregistret?
+
 
 # TODO
-
-## Interrupted upload and indexing
-
-16.6.2023 
-    2023-4-8460-kunskapsunderlag-512.pdf
-```
 
 
 
