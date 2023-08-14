@@ -17,20 +17,20 @@ class RetrieveThenReadApproach(AskApproach):
     """
 
     system_chat_template = \
-"You are an intelligent assistant helping users with health issues by answering their questions based on healthcare knowledge base documentation. " \
-"Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " + \
-"Answer the question using only the data provided in the information sources below. " + \
-"For tabular information return it as an html table. Do not return markdown format. " + \
-"Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. " + \
-"If you cannot answer using the sources below, say you don't know. You answer in the language of the user. Use below example to answer"
+        "You are an intelligent assistant helping users with health issues by answering their questions based on healthcare knowledge base documentation. " \
+        "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " + \
+        "Answer the question using only the data provided in the information sources below. " + \
+        "For tabular information return it as an html table. Do not return markdown format. " + \
+        "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. " + \
+        "If you cannot answer using the sources below, say you don't know. You answer in the language of the user. Use below example to answer"
 
-    #shots/sample conversation
+    # shots/sample conversation
     question = """
 'Kerro minulle ALS taudista?'
 
 Sources:
 als-1.pdf: ALS (amyotrofinen lateraaliskleroosi) on harvinainen, etenevä hermoston sairaus, joka vaikuttaa lihasten toimintaan.ALS-tauti vaurioittaa motorisia hermosoluja, jotka ohjaavat tahdonalaisia lihaksia, ja tätä kautta heikentää lihasten voimaa ja toimintakykyä.
-als-2.pdf: ALS-taudin oireita ovat: Lihasten heikkous ja surkastuminen Lihasten nykiminen (faskikulaatiot) Lihasten jäykkyys (spastisuus) Puheen, nielemisen ja hengityksen vaikeudet 
+als-2.pdf: ALS-taudin oireita ovat: Lihasten heikkous ja surkastuminen Lihasten nykiminen (faskikulaatiot) Lihasten jäykkyys (spastisuus) Puheen, nielemisen ja hengityksen vaikeudet.
 als-3.pdf: ALS-taudin syyt ovat pääosin tuntemattomia, mutta taudin kehittymisessä saattaa olla geneettisiä tekijöitä. Tauti alkaa yleensä iän 40 ja 70 välillä, ja miesten sairastumisriski on hieman suurempi kuin naisten.
 Tällä hetkellä ei ole parantavaa hoitoa ALS-taudille, mutta oireita voidaan lievittää ja elämänlaatua parantaa esimerkiksi fysio- ja puheterapian avulla. Lääkityksellä voidaan hidastaa taudin etenemistä ja helpottaa oireita.
 """
@@ -47,11 +47,14 @@ Tällä hetkellä ei ole parantavaa hoitoa ALS-taudille, mutta oireita voidaan l
 
     async def run(self, q: str, overrides: dict[str, Any]) -> Any:
         has_text = overrides.get("retrieval_mode") in ["text", "hybrid", None]
-        has_vector = overrides.get("retrieval_mode") in ["vectors", "hybrid", None]
-        use_semantic_captions = True if overrides.get("semantic_captions") and has_text else False
+        has_vector = overrides.get("retrieval_mode") in [
+            "vectors", "hybrid", None]
+        use_semantic_captions = True if overrides.get(
+            "semantic_captions") and has_text else False
         top = overrides.get("top") or 3
         exclude_category = overrides.get("exclude_category") or None
-        filter = "category ne '{}'".format(exclude_category.replace("'", "''")) if exclude_category else None
+        filter = "category ne '{}'".format(
+            exclude_category.replace("'", "''")) if exclude_category else None
 
         # If retrieval mode includes vectors, compute an embedding for the query
         if has_vector:
@@ -65,30 +68,31 @@ Tällä hetkellä ei ole parantavaa hoitoa ALS-taudille, mutta oireita voidaan l
         # Use semantic ranker if requested and if retrieval mode is text or hybrid (vectors + text)
         if overrides.get("semantic_ranker") and has_text:
             r = await self.search_client.search(query_text,
-                                          filter=filter,
-                                          query_type=QueryType.SEMANTIC, 
-                                          query_language="fi-FI", 
-                                          # query_speller="lexicon", 
-                                          semantic_configuration_name="default", 
-                                          top=top, 
-                                          query_caption="extractive|highlight-false" if use_semantic_captions else None)
-                                          vector=query_vector,
-                                          top_k=50 if query_vector else None,
-                                          vector_fields="embedding" if query_vector else None)
+                                                filter=filter,
+                                                query_type=QueryType.SEMANTIC,
+                                                query_language="fi-FI",
+                                                # query_speller="lexicon",
+                                                semantic_configuration_name="default",
+                                                top=top,
+                                                query_caption="extractive|highlight-false" if use_semantic_captions else None,
+                                                vector=query_vector,
+                                                top_k=50 if query_vector else None,
+                                                vector_fields="embedding" if query_vector else None)
         else:
             r = await self.search_client.search(query_text,
-                                          filter=filter,
-                                          top=top,
-                                          vector=query_vector,
-                                          top_k=50 if query_vector else None,
-                                          vector_fields="embedding" if query_vector else None)
+                                                filter=filter,
+                                                top=top,
+                                                vector=query_vector,
+                                                top_k=50 if query_vector else None,
+                                                vector_fields="embedding" if query_vector else None)
         if use_semantic_captions:
             results = [doc[self.sourcepage_field] + ": " + nonewlines(" . ".join([c.text for c in doc['@search.captions']])) async for doc in r]
         else:
             results = [doc[self.sourcepage_field] + ": " + nonewlines(doc[self.content_field]) async for doc in r]
         content = "\n".join(results)
 
-        message_builder = MessageBuilder(overrides.get("prompt_template") or self.system_chat_template, self.chatgpt_model)
+        message_builder = MessageBuilder(overrides.get(
+            "prompt_template") or self.system_chat_template, self.chatgpt_model)
 
         # add user question
         user_content = q + "\n" + f"Sources:\n {content}"
