@@ -13,12 +13,14 @@ param appServicePlanName string = ''
 param backendServiceName string = ''
 param resourceGroupName string = ''
 
+param applicationInsightsName string = ''
+
 param searchServiceName string = ''
 param searchServiceResourceGroupName string = ''
 param searchServiceResourceGroupLocation string = location
 
 param searchServiceSkuName string = 'standard'
-param searchIndexName string = 'gptkbindex'
+param searchIndexName string // Set in main.parameters.json
 
 param storageAccountName string = ''
 param storageResourceGroupName string = ''
@@ -27,7 +29,14 @@ param storageContainerName string = 'content'
 
 param openAiServiceName string = ''
 param openAiResourceGroupName string = ''
-param openAiResourceGroupLocation string = location
+@description('Location for the OpenAI resource group')
+@allowed(['eastus', 'southcentralus', 'westeurope'])
+@metadata({
+  azd: {
+    type: 'location'
+  }
+})
+param openAiResourceGroupLocation string
 
 param openAiSkuName string = 'S0'
 
@@ -37,13 +46,21 @@ param formRecognizerResourceGroupLocation string = location
 
 param formRecognizerSkuName string = 'S0'
 
-param gptDeploymentName string = 'davinci'
-param gptModelName string = 'text-davinci-003'
-param chatGptDeploymentName string = 'chat'
+param gptDeploymentName string // Set in main.parameters.json
+param gptDeploymentCapacity int = 30
+param gptModelName string = 'gpt-35-turbo'
+param chatGptDeploymentName string // Set in main.parameters.json
+param chatGptDeploymentCapacity int = 30
 param chatGptModelName string = 'gpt-35-turbo'
+param embeddingDeploymentName string = 'embedding'
+param embeddingDeploymentCapacity int = 30
+param embeddingModelName string = 'text-embedding-ada-002'
 
 @description('Id of the user or app to assign application roles')
 param principalId string = ''
+
+@description('Use Application Insights for monitoring and performance tracing')
+param useApplicationInsights bool = false
 
 var abbrs = loadJsonContent('abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -70,6 +87,17 @@ resource searchServiceResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-
 
 resource storageResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' existing = if (!empty(storageResourceGroupName)) {
   name: !empty(storageResourceGroupName) ? storageResourceGroupName : resourceGroup.name
+}
+
+// Monitor application with Azure Monitor
+module monitoring './core/monitor/monitoring.bicep' = if (useApplicationInsights) {
+  name: 'monitoring'
+  scope: resourceGroup
+  params: {
+    location: location
+    tags: tags
+    applicationInsightsName: !empty(applicationInsightsName) ? applicationInsightsName : '${abbrs.insightsComponents}${resourceToken}'
+  }
 }
 
 // Create an App Service Plan to group applications under the same payment plan and SKU
@@ -99,6 +127,7 @@ module backend 'core/host/appservice.bicep' = {
     appServicePlanId: appServicePlan.outputs.id
     runtimeName: 'python'
     runtimeVersion: '3.10'
+    appCommandLine: 'python3 -m gunicorn main:app'
     scmDoBuildDuringDeployment: true
     managedIdentity: true
     appSettings: {
@@ -109,6 +138,8 @@ module backend 'core/host/appservice.bicep' = {
       AZURE_SEARCH_SERVICE: searchService.outputs.name
       AZURE_OPENAI_GPT_DEPLOYMENT: gptDeploymentName
       AZURE_OPENAI_CHATGPT_DEPLOYMENT: chatGptDeploymentName
+      AZURE_OPENAI_EMB_DEPLOYMENT: embeddingDeploymentName
+      APPLICATIONINSIGHTS_CONNECTION_STRING: useApplicationInsights ? monitoring.outputs.applicationInsightsConnectionString : ''
     }
   }
 }
@@ -129,10 +160,11 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
         model: {
           format: 'OpenAI'
           name: gptModelName
-          version: '1'
+          version: '0301'
         }
-        scaleSettings: {
-          scaleType: 'Standard'
+        sku: {
+          name: 'Standard'
+          capacity: gptDeploymentCapacity
         }
       }
       {
@@ -142,9 +174,19 @@ module openAi 'core/ai/cognitiveservices.bicep' = {
           name: chatGptModelName
           version: '0301'
         }
-        scaleSettings: {
-          scaleType: 'Standard'
+        sku: {
+          name: 'Standard'
+          capacity: chatGptDeploymentCapacity
         }
+      }
+      {
+        name: embeddingDeploymentName
+        model: {
+          format: 'OpenAI'
+          name: embeddingModelName
+          version: '2'
+        }
+        capacity: embeddingDeploymentCapacity
       }
     ]
   }
@@ -317,6 +359,7 @@ output AZURE_OPENAI_SERVICE string = openAi.outputs.name
 output AZURE_OPENAI_RESOURCE_GROUP string = openAiResourceGroup.name
 output AZURE_OPENAI_GPT_DEPLOYMENT string = gptDeploymentName
 output AZURE_OPENAI_CHATGPT_DEPLOYMENT string = chatGptDeploymentName
+output AZURE_OPENAI_EMB_DEPLOYMENT string = embeddingDeploymentName
 
 output AZURE_FORMRECOGNIZER_SERVICE string = formRecognizer.outputs.name
 output AZURE_FORMRECOGNIZER_RESOURCE_GROUP string = formRecognizerResourceGroup.name
