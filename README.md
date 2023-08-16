@@ -21,7 +21,6 @@ The repo includes sample data so it's ready to try end to end. In this sample ap
 
 ## Prerequisites
 
-<<<<<<< HEAD
 ### To Run Locally
 - [Azure Developer CLI](https://aka.ms/azure-dev/install)
 - [Python 3+](https://www.python.org/downloads/)
@@ -31,9 +30,6 @@ The repo includes sample data so it's ready to try end to end. In this sample ap
 - [Git](https://git-scm.com/downloads)
 - [Powershell 7+ (pwsh)](https://github.com/powershell/powershell) - For Windows users only.
    - **Important**: Ensure you can run `pwsh.exe` from a PowerShell command. If this fails, you likely need to upgrade PowerShell.
-=======
-#### To Run Locally
->>>>>>> 9ee22bf60904780d271b4e1e49645e10f84e77a9
 
 * [Azure Developer CLI](https://aka.ms/azure-dev/install)
 * [Python 3.9+](https://www.python.org/downloads/)
@@ -54,15 +50,9 @@ The repo includes sample data so it's ready to try end to end. In this sample ap
 1. Create a new folder and switch to it in the terminal
 1. Run `azd auth login --tenant-id 81b59a4e-f4e0-4903-be71-0ee63ff2b992`
 1. Run `azd init -t azure-search-openai-demo`
-<<<<<<< HEAD
     * For the target location, the regions that currently support the models used in this sample are **East US** or **West Europe**. For an up-to-date list of regions and models, check [here](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/concepts/models)
 
 ### Starting from scratch:
-=======
-    * note that this command will initialize a git repository and you do not need to clone this repository
-
-#### Starting from scratch
->>>>>>> 9ee22bf60904780d271b4e1e49645e10f84e77a9
 
 Execute the following command, if you don't have any pre-existing Azure services and want to start from a fresh deployment.
 
@@ -76,11 +66,7 @@ It will look like the following:
 
 > NOTE: It may take a minute for the application to be fully deployed. If you see a "Python Developer" welcome screen, then wait a minute and refresh the page.
 
-<<<<<<< HEAD
 ### Use existing resources:
-=======
-#### Using existing resources
->>>>>>> 9ee22bf60904780d271b4e1e49645e10f84e77a9
 
 1. Run `azd env set AZURE_OPENAI_SERVICE {Name of existing OpenAI service}`
 1. Run `azd env set AZURE_OPENAI_RESOURCE_GROUP {Name of existing resource group that OpenAI service is provisioned to}`
@@ -166,10 +152,7 @@ If you've changed the infrastructure files (`infra` folder or `azure.yaml`), the
 
 #### Running locally
 
-<<<<<<< HEAD
 ### Running locally:
-=======
->>>>>>> 9ee22bf60904780d271b4e1e49645e10f84e77a9
 1. Run `azd login`
 2. Change dir to `app`
 3. Run `./start.ps1` or `./start.sh` or run the "VS Code Task: Start App" to start the project locally.
@@ -226,12 +209,9 @@ Once in the web app:
 * [Revolutionize your Enterprise Data with ChatGPT: Next-gen Apps w/ Azure OpenAI and Cognitive Search](https://aka.ms/entgptsearchblog)
 * [Azure Cognitive Search](https://learn.microsoft.com/azure/search/search-what-is-azure-search)
 * [Azure OpenAI Service](https://learn.microsoft.com/azure/cognitive-services/openai/overview)
-<<<<<<< HEAD
-=======
 
 ### Note
 
->Note: The PDF documents used in this demo contain information generated using a language model (Azure OpenAI Service). The information contained in these documents is only for demonstration purposes and does not reflect the opinions or beliefs of Microsoft. Microsoft makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the information contained in this document. All rights reserved to Microsoft.
 
 ### FAQ
 
@@ -278,4 +258,3 @@ Here are the most common failure scenarios and solutions:
 
 1. After running `azd up` and visiting the website, you see a '404 Not Found' in the browser. Wait 10 minutes and try again, as it might be still starting up. Then try running `azd deploy` and wait again. If you still encounter errors with the deployed app, consult these [tips for debugging App Service app deployments](http://blog.pamelafox.org/2023/06/tips-for-debugging-flask-deployments-to.html)
 and file an issue if the error logs don't help you resolve the issue.
->>>>>>> 9ee22bf60904780d271b4e1e49645e10f84e77a9
